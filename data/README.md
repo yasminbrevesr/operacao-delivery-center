@@ -1,7 +1,5 @@
 # Dados originais
 
-Coloque aqui os CSVs fornecidos no teste (não são versionados no Git):
-
 | Arquivo | Conteúdo | Codificação |
 |---|---|---|
 | `channels.csv` | Canais de venda | UTF-8 |
@@ -12,4 +10,3 @@ Coloque aqui os CSVs fornecidos no teste (não são versionados no Git):
 | `payments.csv` | Pagamentos | UTF-8 |
 | `stores.csv` | Lojistas | cp1252 |
 
-Depois, no `scripts/.env`, informe `CSV_DIR=../data` e rode `python subir_supabase.py`.
