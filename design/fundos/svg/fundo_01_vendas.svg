@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+<defs><linearGradient id="grad_destaque" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#458489"/><stop offset="1" stop-color="#366C6E"/></linearGradient></defs>
+<rect width="1280" height="720" fill="#FFFFFF"/>
+<rect x="210.5" y="0" width="1.5" height="720" fill="#53A1A5"/>
+<rect x="20" y="86" width="172" height="1.5" fill="#53A1A5"/>
+<text x="22" y="316" font-family="Inter, 'Segoe UI', Arial, sans-serif" font-size="15" font-weight="700" letter-spacing="0.8" fill="#1F1F1F">FILTROS</text>
+<rect x="20" y="330" width="172" height="1.5" fill="#53A1A5"/>
+<text x="235" y="30" font-family="Inter, 'Segoe UI', Arial, sans-serif" font-size="11" font-weight="600" letter-spacing="2.2" fill="#8DBFC2">01 · COMERCIAL</text>
+<text x="234" y="62" font-family="Inter, 'Segoe UI', Arial, sans-serif" font-size="26" fill="#4A9A9C" letter-spacing="0.3"><tspan font-weight="300">DESEMPENHO DE </tspan><tspan font-weight="700">VENDAS</tspan></text>
+<rect x="234" y="84" width="1022" height="150" rx="12" fill="#53A1A5"/>
+<text x="252" y="111" font-family="Inter, 'Segoe UI', Arial, sans-serif" font-size="13" font-weight="700" letter-spacing="0.6" fill="#FFFFFF">PRINCIPAIS INDICADORES</text>
+<rect x="234" y="127" width="1022" height="1" fill="#82C7CC"/>
+<rect x="438.4" y="140" width="1" height="82" fill="#82C7CC"/>
+<rect x="642.8" y="140" width="1" height="82" fill="#82C7CC"/>
+<rect x="847.2" y="140" width="1" height="82" fill="#82C7CC"/>
+<rect x="1051.6" y="140" width="1" height="82" fill="#82C7CC"/>
+<rect x="234" y="248" width="628" height="220" rx="12" fill="#53A1A5"/>
+<text x="252" y="275" font-family="Inter, 'Segoe UI', Arial, sans-serif" font-size="13" font-weight="700" letter-spacing="0.6" fill="#FFFFFF">PEDIDOS AO LONGO DO TEMPO</text>
+<rect x="234" y="291" width="628" height="1" fill="#82C7CC"/>
+<rect x="876" y="248" width="380" height="220" rx="12" fill="#53A1A5"/>
+<text x="894" y="275" font-family="Inter, 'Segoe UI', Arial, sans-serif" font-size="13" font-weight="700" letter-spacing="0.6" fill="#FFFFFF">PEDIDOS POR TIPO</text>
+<rect x="876" y="291" width="380" height="1" fill="#82C7CC"/>
+<rect x="234" y="482" width="504" height="218" rx="12" fill="#53A1A5"/>
+<text x="252" y="509" font-family="Inter, 'Segoe UI', Arial, sans-serif" font-size="13" font-weight="700" letter-spacing="0.6" fill="#FFFFFF">PEDIDOS POR DIA DA SEMANA</text>
+<rect x="234" y="525" width="504" height="1" fill="#82C7CC"/>
+<rect x="752" y="482" width="504" height="218" rx="12" fill="url(#grad_destaque)"/>
+<text x="770" y="509" font-family="Inter, 'Segoe UI', Arial, sans-serif" font-size="13" font-weight="700" letter-spacing="0.6" fill="#FFFFFF">STATUS DOS PEDIDOS</text>
+<rect x="752" y="525" width="504" height="1" fill="#6FA9AC"/>
+</svg>

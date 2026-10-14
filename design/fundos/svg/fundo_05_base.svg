@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+<defs><linearGradient id="grad_destaque" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#458489"/><stop offset="1" stop-color="#366C6E"/></linearGradient></defs>
+<rect width="1280" height="720" fill="#FFFFFF"/>
+<rect x="210.5" y="0" width="1.5" height="720" fill="#53A1A5"/>
+<rect x="20" y="86" width="172" height="1.5" fill="#53A1A5"/>
+<text x="22" y="316" font-family="Inter, 'Segoe UI', Arial, sans-serif" font-size="15" font-weight="700" letter-spacing="0.8" fill="#1F1F1F">FILTROS</text>
+<rect x="20" y="330" width="172" height="1.5" fill="#53A1A5"/>
+</svg>

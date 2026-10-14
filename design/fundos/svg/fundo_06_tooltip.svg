@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="240" viewBox="0 0 320 240">
+<defs><linearGradient id="grad_destaque" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#458489"/><stop offset="1" stop-color="#366C6E"/></linearGradient></defs>
+<rect width="320" height="240" fill="#53A1A5"/>
+<rect x="0" y="0" width="320" height="4" fill="#366C6E"/>
+<rect x="12" y="40" width="296" height="1" fill="#82C7CC"/>
+<rect x="111" y="54" width="1" height="46" fill="#82C7CC"/>
+<rect x="209" y="54" width="1" height="46" fill="#82C7CC"/>
+<rect x="12" y="112" width="296" height="1" fill="#82C7CC"/>
+<rect x="12" y="122" width="296" height="106" rx="8" fill="#4A9599"/>
+</svg>

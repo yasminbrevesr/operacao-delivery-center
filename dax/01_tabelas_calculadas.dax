@@ -1,0 +1,40 @@
+// =====================================================================
+// Tabelas calculadas  (Modelagem › Nova tabela)
+// =====================================================================
+
+// ---------------------------------------------------------------------
+// dCalendario – anos completos do primeiro ao último ano com pedidos.
+// Depois de criar: Marcar como tabela de datas (coluna Data) e ordenar
+// Mês por Mês Nº, Mês/Ano por Mês/Ano Ordem, Dia da Semana por Dia da Semana Nº.
+// ---------------------------------------------------------------------
+dCalendario =
+VAR Inicio = DATE ( YEAR ( MIN ( fPedidos[Data] ) ), 1, 1 )
+VAR Fim    = DATE ( YEAR ( MAX ( fPedidos[Data] ) ), 12, 31 )
+RETURN
+    ADDCOLUMNS (
+        SELECTCOLUMNS ( CALENDAR ( Inicio, Fim ), "Data", [Date] ),
+        "Ano", YEAR ( [Data] ),
+        "Mês Nº", MONTH ( [Data] ),
+        "Mês", SWITCH ( MONTH ( [Data] ), 1, "Jan", 2, "Fev", 3, "Mar", 4, "Abr", 5, "Mai", 6, "Jun",
+                                         7, "Jul", 8, "Ago", 9, "Set", 10, "Out", 11, "Nov", 12, "Dez" ),
+        "Mês/Ano", SWITCH ( MONTH ( [Data] ), 1, "Jan", 2, "Fev", 3, "Mar", 4, "Abr", 5, "Mai", 6, "Jun",
+                                             7, "Jul", 8, "Ago", 9, "Set", 10, "Out", 11, "Nov", 12, "Dez" )
+                   & "/" & YEAR ( [Data] ),
+        "Mês/Ano Ordem", YEAR ( [Data] ) * 100 + MONTH ( [Data] ),
+        "Trimestre", "T" & QUARTER ( [Data] ),
+        "Dia da Semana Nº", WEEKDAY ( [Data], 2 ),   -- 1 = segunda ... 7 = domingo
+        "Dia da Semana", SWITCH ( WEEKDAY ( [Data], 2 ), 1, "Seg", 2, "Ter", 3, "Qua", 4, "Qui",
+                                                         5, "Sex", 6, "Sáb", 7, "Dom" )
+    )
+
+// ---------------------------------------------------------------------
+// Prazo Entrega – parâmetro do indicador "% no prazo" (15 a 120 min).
+// Usado em uma segmentação de seleção única na página 02.
+// ---------------------------------------------------------------------
+Prazo Entrega = GENERATESERIES ( 15, 120, 5 )
+
+// ---------------------------------------------------------------------
+// _Medidas – tabela vazia que agrupa as medidas.
+// Criar por Página Inicial › Inserir dados › Nome: _Medidas › Carregar,
+// e excluir a Coluna1 depois de criar a primeira medida.
+// ---------------------------------------------------------------------

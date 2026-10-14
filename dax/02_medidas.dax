@@ -1,0 +1,131 @@
+// =====================================================================
+// Medidas – tabela _Medidas  (Ferramentas de tabela › Nova medida)
+// Cada bloco "Nome = ..." é uma medida. Pasta de exibição e formato
+// indicados no comentário acima de cada uma.
+// =====================================================================
+
+
+// ======================== Pasta: 01 Vendas ===========================
+
+// [Ind. 1] Inteiro
+Total Pedidos = COUNTROWS ( fPedidos )
+
+// Inteiro
+Pedidos Concluídos = CALCULATE ( [Total Pedidos], fPedidos[Cancelado] = 0 )
+
+// Inteiro
+Pedidos Cancelados = CALCULATE ( [Total Pedidos], fPedidos[Cancelado] = 1 )
+
+// [Ind. 3] Moeda – pedidos cancelados não geram receita
+Receita Total = CALCULATE ( SUM ( fPedidos[Valor Pedido] ), fPedidos[Cancelado] = 0 )
+
+// [Ind. 4] Moeda
+Ticket Médio = DIVIDE ( [Receita Total], [Pedidos Concluídos] )
+
+// [Ind. 7] Porcentagem
+% Cancelados = DIVIDE ( [Pedidos Cancelados], [Total Pedidos] )
+
+// Inteiro – pedidos com pagamento estornado (chargeback)
+Pedidos Devolvidos = CALCULATE ( [Total Pedidos], fPedidos[Estornado] = 1 )
+
+// [Ind. 9] Porcentagem (2 casas)
+% Devolução = DIVIDE ( [Pedidos Devolvidos], [Total Pedidos] )
+
+
+// ======================= Pasta: 02 Operação ==========================
+
+// 0 "min" – valor da segmentação de prazo (60 se nada for escolhido)
+Prazo Selecionado (min) = SELECTEDVALUE ( 'Prazo Entrega'[Value], 60 )
+
+// [Ind. 5] #,0.0 "min" – Finalizado em − Criado em, sem cancelados
+Tempo Médio Entrega (min) =
+CALCULATE ( AVERAGE ( fPedidos[Tempo Entrega (min)] ), fPedidos[Cancelado] = 0 )
+
+// Inteiro – base do % no prazo
+Pedidos com Tempo =
+CALCULATE ( [Total Pedidos], fPedidos[Cancelado] = 0, NOT ISBLANK ( fPedidos[Tempo Entrega (min)] ) )
+
+// Inteiro
+Pedidos no Prazo =
+VAR Prazo = [Prazo Selecionado (min)]
+RETURN
+    CALCULATE (
+        [Total Pedidos],
+        fPedidos[Cancelado] = 0,
+        NOT ISBLANK ( fPedidos[Tempo Entrega (min)] ),
+        fPedidos[Tempo Entrega (min)] <= Prazo
+    )
+
+// Inteiro
+Pedidos Fora do Prazo = [Pedidos com Tempo] - [Pedidos no Prazo]
+
+// [Ind. 6] Porcentagem
+% no Prazo = DIVIDE ( [Pedidos no Prazo], [Pedidos com Tempo] )
+
+// [Ind. 10] Moeda – pedidos sem custo informado são ignorados
+Custo Médio Entrega = AVERAGE ( fPedidos[Custo Entrega] )
+
+// [Ind. 14] #,0.0 "min" – Aceito em − Criado em
+Tempo Médio Resposta (min) = AVERAGE ( fPedidos[Tempo Resposta (min)] )
+
+// #,0.0 "min" – etapas do pedido (colunas originais da base)
+Tempo Médio Produção = AVERAGE ( fPedidos[Tempo Produção] )
+
+Tempo Médio Coleta = AVERAGE ( fPedidos[Tempo Coleta] )
+
+Tempo Médio Trânsito = AVERAGE ( fPedidos[Tempo Trânsito] )
+
+
+// ======================= Pasta: 03 Parceiros =========================
+
+// [Ind. 8] Inteiro – lojas com pelo menos um pedido no período
+Lojas Parceiras = DISTINCTCOUNT ( fPedidos[ID Loja] )
+
+// Inteiro
+Cidades Atendidas = CALCULATE ( DISTINCTCOUNT ( dLoja[Cidade] ), fPedidos )
+
+// Inteiro
+Hubs Ativos = CALCULATE ( DISTINCTCOUNT ( dLoja[ID Hub] ), fPedidos )
+
+// #,0.0
+Pedidos por Loja = DIVIDE ( [Total Pedidos], [Lojas Parceiras] )
+
+
+// ====================== Pasta: 04 Adicionais =========================
+
+// Porcentagem – último mês do período vs. mês anterior
+Crescimento Pedidos (MoM) =
+VAR UltimaData = CALCULATE ( MAX ( fPedidos[Data] ) )
+VAR Atual =
+    CALCULATE ( [Total Pedidos],
+        DATESBETWEEN ( dCalendario[Data], EOMONTH ( UltimaData, -1 ) + 1, EOMONTH ( UltimaData, 0 ) ) )
+VAR Anterior =
+    CALCULATE ( [Total Pedidos],
+        DATESBETWEEN ( dCalendario[Data], EOMONTH ( UltimaData, -2 ) + 1, EOMONTH ( UltimaData, -1 ) ) )
+RETURN
+    DIVIDE ( Atual - Anterior, Anterior )
+
+// Moeda – frete cobrado − custo da entrega
+Resultado do Frete =
+CALCULATE ( SUM ( fPedidos[Frete Cobrado] ) - SUM ( fPedidos[Custo Entrega] ), fPedidos[Cancelado] = 0 )
+
+// Moeda
+Custo por km =
+VAR Base = FILTER ( fPedidos, fPedidos[Distância (km)] > 0 && NOT ISBLANK ( fPedidos[Custo Entrega] ) )
+RETURN
+    DIVIDE ( SUMX ( Base, fPedidos[Custo Entrega] ), SUMX ( Base, fPedidos[Distância (km)] ) )
+
+// #,0.00 "km" – distâncias > 50 km descartadas no Power Query
+Distância Média (km) = AVERAGE ( fEntregas[Distância (km)] )
+
+// Porcentagem – pedidos com mais de uma entrega
+Taxa de Reentrega = DIVIDE ( CALCULATE ( [Total Pedidos], fPedidos[Reentrega] = 1 ), [Total Pedidos] )
+
+// Moeda
+Valor Pagamentos = SUM ( fPagamentos[Valor Pagamento] )
+
+// Inteiro
+Entregas Realizadas = CALCULATE ( COUNTROWS ( fEntregas ), fEntregas[Status Entrega] = "Entregue" )
+
+// Inteiro – ignora entregas sem entregador
+Entregadores Ativos = DISTINCTCOUNTNOBLANK ( fEntregas[ID Entregador] )
