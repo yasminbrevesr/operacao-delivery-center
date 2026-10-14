@@ -4,7 +4,10 @@ Relatório em Power BI com a visão operacional do **Delivery Center**, platafor
 
 Arquivo do relatório: **`OPERAÇÃO DO DELIVERY CENTER – YASMIN.pbix`**
 
-👉 [Clique aqui para acessar o Dashboard](https://app.powerbi.com/view?r=eyJrIjoiZjMzNDIyZmItNjg1Ny00NGViLTkwNGUtOWM1MWJlY2E5YjEwIiwidCI6IjY1OWNlMmI4LTA3MTQtNDE5OC04YzM4LWRjOWI2MGFhYmI1NyJ9&pageName=a4bfe55e2f69635d53cb)
+👉 [Clique aqui para acessar o Dashboard]([https://app.powerbi.com/view?r=eyJrIjoiZjMzNDIyZmItNjg1Ny00NGViLTkwNGUtOWM1MWJlY2E5YjEwIiwidCI6IjY1OWNlMmI4LTA3MTQtNDE5OC04YzM4LWRjOWI2MGFhYmI1NyJ9&pageName=a4bfe55e2f69635d53cb](https://app.powerbi.com/view?r=eyJrIjoiZjM5NTQ2ZDQtMDAyOS00OTZhLTk2MGItYzk3OTMwYmUxZDBhIiwidCI6IjY1OWNlMmI4LTA3MTQtNDE5OC04YzM4LWRjOWI2MGFhYmI1NyJ9))
+
+<img width="2560" height="1440" alt="fundo_00_capa" src="https://github.com/user-attachments/assets/bb3aaed1-3e91-4ba9-a842-76e99c0e17b5" />
+
 
 ---
 
